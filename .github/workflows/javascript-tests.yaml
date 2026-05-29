@@ -63,7 +63,7 @@ jobs:
           TRUNK_PUBLIC_API_ADDRESS: ${{ vars.TRUNK_API_ENDPOINT }}
         with:
           # Path to your test results.
-          junit-paths: "**/junitresults-*.xml"
+          junit-paths: tests/jest/jest_junit_test.xml
           # Provide your Trunk organization slug.
           org-slug: ${{ vars.ORG_SLUG }}
           cli-version: 0.12.11-beta.1
@@ -84,7 +84,7 @@ jobs:
           TRUNK_PUBLIC_API_ADDRESS: ${{ vars.TRUNK_API_ENDPOINT }}
         with:
           # Path to your test results.
-          junit-paths: "**/*_test.xml"
+          junit-paths: tests/jasmine/reports/season_test.xml
           # Provide your Trunk organization slug.
           org-slug: ${{ vars.ORG_SLUG }}
           cli-version: 0.12.11-beta.1
@@ -119,7 +119,8 @@ jobs:
         with:
           name: javascript-junit-results
           path: |
-            **/*_test.xml
-            **/junitresults-*.xml
-            **/mocha_test.xml
+            tests/jest/jest_junit_test.xml
+            tests/jasmine/reports/season_test.xml
+            tests/playwright/junitresults-playwright.xml
+            javascript/tests/mocha/mocha_test.xml
           retention-days: 7
