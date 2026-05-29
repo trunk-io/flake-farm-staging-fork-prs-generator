@@ -24,8 +24,8 @@ jobs:
         if: ${{ always() }}
         working-directory: ruby/trunk_rspec
         env:
-          TRUNK_PUBLIC_API_ADDRESS: ${{ vars.TRUNK_API_ENDPOINT }}
-          TRUNK_ORG_URL_SLUG: ${{ vars.ORG_SLUG }}
+          TRUNK_PUBLIC_API_ADDRESS: "https://api.trunk-staging.io"
+          TRUNK_ORG_URL_SLUG: trunk-staging-org
         run: bundle exec rspec
         continue-on-error: true
 
@@ -40,12 +40,12 @@ jobs:
         if: ${{ always() }}
         uses: trunk-io/analytics-uploader@main
         env:
-          TRUNK_PUBLIC_API_ADDRESS: ${{ vars.TRUNK_API_ENDPOINT }}
+          TRUNK_PUBLIC_API_ADDRESS: "https://api.trunk-staging.io"
         with:
           # Path to your test results.
           junit-paths: "**/rspec_test.xml"
           # Provide your Trunk organization slug.
-          org-slug: ${{ vars.ORG_SLUG }}
+          org-slug: trunk-staging-org
           cli-version: 0.12.11-beta.1
           public-repo-id: NNSvcFXb
           # Pass the test outcome for quarantining support
@@ -62,12 +62,12 @@ jobs:
         if: ${{ always() }}
         uses: trunk-io/analytics-uploader@main
         env:
-          TRUNK_PUBLIC_API_ADDRESS: ${{ vars.TRUNK_API_ENDPOINT }}
+          TRUNK_PUBLIC_API_ADDRESS: "https://api.trunk-staging.io"
         with:
           # Path to your test results.
           junit-paths: "**/ruby/minitest/results/*.xml"
           # Provide your Trunk organization slug.
-          org-slug: ${{ vars.ORG_SLUG }}
+          org-slug: trunk-staging-org
           cli-version: 0.12.11-beta.1
           public-repo-id: NNSvcFXb
           # Pass the test outcome for quarantining support

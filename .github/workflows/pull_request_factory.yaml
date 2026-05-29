@@ -60,6 +60,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
         with:
+          token: ${{ secrets.FARM_PAT_FORK }}
           branch-token: ${{ secrets.FARM_PAT_FORK }}
           push-to-fork: trunk-io/flake-farm-staging-fork-prs-generator
           # Necessary for fork perms restrictions and the isolation of our tokens
