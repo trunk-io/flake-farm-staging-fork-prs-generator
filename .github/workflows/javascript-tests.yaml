@@ -40,13 +40,12 @@ jobs:
         uses: trunk-io/analytics-uploader@main
         env:
           TRUNK_PUBLIC_API_ADDRESS: ${{ vars.TRUNK_API_ENDPOINT }}
+          TRUNK_PUBLIC_REPO_ID_ENV: NNSvcFXb
         with:
           # Path to your test results.
           junit-paths: javascript/tests/mocha/mocha_test.xml
           # Provide your Trunk organization slug.
           org-slug: ${{ vars.ORG_SLUG }}
-          # Provide your Trunk API token as a GitHub secret.
-          token: ${{ secrets.TRUNK_TOKEN }}
           # Pass the test outcome for quarantining support
           previous-step-outcome: ${{ steps.mocha_tests.outcome }}
 
@@ -61,13 +60,12 @@ jobs:
         uses: trunk-io/analytics-uploader@main
         env:
           TRUNK_PUBLIC_API_ADDRESS: ${{ vars.TRUNK_API_ENDPOINT }}
+          TRUNK_PUBLIC_REPO_ID_ENV: NNSvcFXb
         with:
           # Path to your test results.
           junit-paths: "**/junitresults-*.xml"
           # Provide your Trunk organization slug.
           org-slug: ${{ vars.ORG_SLUG }}
-          # Provide your Trunk API token as a GitHub secret.
-          token: ${{ secrets.TRUNK_TOKEN }}
           # Pass the test outcome for quarantining support
           previous-step-outcome: ${{ steps.jest_tests.outcome }}
 
@@ -82,13 +80,12 @@ jobs:
         uses: trunk-io/analytics-uploader@main
         env:
           TRUNK_PUBLIC_API_ADDRESS: ${{ vars.TRUNK_API_ENDPOINT }}
+          TRUNK_PUBLIC_REPO_ID_ENV: NNSvcFXb
         with:
           # Path to your test results.
           junit-paths: "**/*_test.xml"
           # Provide your Trunk organization slug.
           org-slug: ${{ vars.ORG_SLUG }}
-          # Provide your Trunk API token as a GitHub secret.
-          token: ${{ secrets.TRUNK_TOKEN }}
           # Pass the test outcome for quarantining support
           previous-step-outcome: ${{ steps.jasmine_tests.outcome }}
 
@@ -103,13 +100,12 @@ jobs:
         uses: trunk-io/analytics-uploader@main
         env:
           TRUNK_PUBLIC_API_ADDRESS: ${{ vars.TRUNK_API_ENDPOINT }}
+          TRUNK_PUBLIC_REPO_ID_ENV: NNSvcFXb
         with:
           # Path to your test results.
           junit-paths: tests/playwright/junitresults-playwright.xml
           # Provide your Trunk organization slug.
           org-slug: ${{ vars.ORG_SLUG }}
-          # Provide your Trunk API token as a GitHub secret.
-          token: ${{ secrets.TRUNK_TOKEN }}
           # Pass the test outcome for quarantining support
           previous-step-outcome: ${{ steps.playwright_tests.outcome }}
 

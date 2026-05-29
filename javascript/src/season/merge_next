@@ -4,37 +4,59 @@ import json
 import subprocess
 import sys
 
-# what is current pr open for season switch
+UPSTREAM_REPO = "trunk-io/flake-farm-staging-fork-prs"
+FORK_REPO_NAME = "flake-farm-staging-fork-prs-generator"
+
 labels = ["rabbit", "duck"]
 
-pr_label = None
+pr_number = None
 for lbl in labels:
-    command = f"gh pr list --label {lbl} --json number"
+    command = [
+        "gh",
+        "pr",
+        "list",
+        "--repo",
+        UPSTREAM_REPO,
+        "--label",
+        lbl,
+        "--json",
+        "number,headRepository",
+        "--state",
+        "open",
+    ]
     process = subprocess.run(
-        command, shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True
+        command,
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        universal_newlines=True,
     )
 
-    if process.returncode != 0:
-        continue
+    data = json.loads(process.stdout)
+    for pr in data:
+        head_repo = pr.get("headRepository") or {}
+        if head_repo.get("name") == FORK_REPO_NAME:
+            pr_number = pr["number"]
+            break
 
-    # Parse the output as JSON
-    output = process.stdout
-    data = json.loads(output)
-
-    if data:
-        pr = data[0]["number"]
-        pr_label = lbl
+    if pr_number is not None:
         break
 
-if pr_label is None:
-    print("No PR found with label duck or rabbit")
+if pr_number is None:
+    print("No open fork PR found with label duck or rabbit")
     sys.exit(0)
 
-# Merge the pull request
-merge_command = f"gh pr merge {pr} --merge"
+merge_command = [
+    "gh",
+    "pr",
+    "merge",
+    str(pr_number),
+    "--repo",
+    UPSTREAM_REPO,
+    "--merge",
+]
 merge_process = subprocess.run(
     merge_command,
-    shell=True,
     check=True,
     stdout=subprocess.PIPE,
     stderr=subprocess.PIPE,
@@ -42,8 +64,8 @@ merge_process = subprocess.run(
 )
 
 if merge_process.returncode == 0:
-    print(f"Merged pull request number {pr}")
+    print(f"Merged pull request number {pr_number}")
 else:
-    print(f"Failed to merge pull request number {pr}")
+    print(f"Failed to merge pull request number {pr_number}")
     print(f"Error: {merge_process.stderr}")
     sys.exit(1)

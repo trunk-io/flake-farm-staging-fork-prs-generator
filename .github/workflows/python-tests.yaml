@@ -43,13 +43,12 @@ jobs:
         uses: trunk-io/analytics-uploader@main
         env:
           TRUNK_PUBLIC_API_ADDRESS: ${{ vars.TRUNK_API_ENDPOINT }}
+          TRUNK_PUBLIC_REPO_ID_ENV: NNSvcFXb
         with:
           # Path to your test results.
           junit-paths: python/results/pytest/pytest_test.xml
           # Provide your Trunk organization slug.
           org-slug: ${{ vars.ORG_SLUG }}
-          # Provide your Trunk API token as a GitHub secret.
-          token: ${{ secrets.TRUNK_TOKEN }}
           # Variant to distinguish between OS platforms
           variant: ${{ matrix.variant }}
           # Pass the test outcome for quarantining support
@@ -69,13 +68,12 @@ jobs:
         uses: trunk-io/analytics-uploader@main
         env:
           TRUNK_PUBLIC_API_ADDRESS: ${{ vars.TRUNK_API_ENDPOINT }}
+          TRUNK_PUBLIC_REPO_ID_ENV: NNSvcFXb
         with:
           # Path to your test results.
           junit-paths: python/results/robotframework/robot_test.xml
           # Provide your Trunk organization slug.
           org-slug: ${{ vars.ORG_SLUG }}
-          # Provide your Trunk API token as a GitHub secret.
-          token: ${{ secrets.TRUNK_TOKEN }}
           # Variant to distinguish between OS platforms
           variant: ${{ matrix.variant }}
           # Pass the test outcome for quarantining support
