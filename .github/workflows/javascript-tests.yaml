@@ -119,8 +119,7 @@ jobs:
         with:
           name: javascript-junit-results
           path: |
-            tests/jest/jest_junit_test.xml
-            tests/jasmine/reports/season_test.xml
-            tests/playwright/junitresults-playwright.xml
-            javascript/tests/mocha/mocha_test.xml
+            **/*_test.xml
+            **/junitresults-*.xml
+            **/mocha_test.xml
           retention-days: 7
