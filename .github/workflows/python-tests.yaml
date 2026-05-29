@@ -49,6 +49,7 @@ jobs:
           junit-paths: python/results/pytest/pytest_test.xml
           # Provide your Trunk organization slug.
           org-slug: ${{ vars.ORG_SLUG }}
+          cli-version: 0.12.11-beta.1
           # Variant to distinguish between OS platforms
           variant: ${{ matrix.variant }}
           # Pass the test outcome for quarantining support
@@ -74,6 +75,7 @@ jobs:
           junit-paths: python/results/robotframework/robot_test.xml
           # Provide your Trunk organization slug.
           org-slug: ${{ vars.ORG_SLUG }}
+          cli-version: 0.12.11-beta.1
           # Variant to distinguish between OS platforms
           variant: ${{ matrix.variant }}
           # Pass the test outcome for quarantining support

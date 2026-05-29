@@ -34,5 +34,6 @@ jobs:
         with:
           bazel-bep-path: build_events.json
           org-slug: ${{ vars.ORG_SLUG }}
+          cli-version: 0.12.11-beta.1
           # Pass the test outcome for quarantining support
           previous-step-outcome: ${{ steps.run_tests.outcome }}
