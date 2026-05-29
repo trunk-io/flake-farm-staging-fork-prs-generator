@@ -45,8 +45,8 @@ jobs:
           junit-paths: javascript/tests/mocha/mocha_test.xml
           # Provide your Trunk organization slug.
           org-slug: ${{ vars.ORG_SLUG }}
-          # Provide your Trunk API token as a GitHub secret.
-          token: ${{ secrets.TRUNK_TOKEN }}
+          cli-version: 0.12.11-beta.1
+          public-repo-id: NNSvcFXb
           # Pass the test outcome for quarantining support
           previous-step-outcome: ${{ steps.mocha_tests.outcome }}
 
@@ -63,11 +63,11 @@ jobs:
           TRUNK_PUBLIC_API_ADDRESS: ${{ vars.TRUNK_API_ENDPOINT }}
         with:
           # Path to your test results.
-          junit-paths: "**/junitresults-*.xml"
+          junit-paths: tests/jest/jest_junit_test.xml
           # Provide your Trunk organization slug.
           org-slug: ${{ vars.ORG_SLUG }}
-          # Provide your Trunk API token as a GitHub secret.
-          token: ${{ secrets.TRUNK_TOKEN }}
+          cli-version: 0.12.11-beta.1
+          public-repo-id: NNSvcFXb
           # Pass the test outcome for quarantining support
           previous-step-outcome: ${{ steps.jest_tests.outcome }}
 
@@ -84,11 +84,11 @@ jobs:
           TRUNK_PUBLIC_API_ADDRESS: ${{ vars.TRUNK_API_ENDPOINT }}
         with:
           # Path to your test results.
-          junit-paths: "**/*_test.xml"
+          junit-paths: tests/jasmine/reports/season_test.xml
           # Provide your Trunk organization slug.
           org-slug: ${{ vars.ORG_SLUG }}
-          # Provide your Trunk API token as a GitHub secret.
-          token: ${{ secrets.TRUNK_TOKEN }}
+          cli-version: 0.12.11-beta.1
+          public-repo-id: NNSvcFXb
           # Pass the test outcome for quarantining support
           previous-step-outcome: ${{ steps.jasmine_tests.outcome }}
 
@@ -108,8 +108,8 @@ jobs:
           junit-paths: tests/playwright/junitresults-playwright.xml
           # Provide your Trunk organization slug.
           org-slug: ${{ vars.ORG_SLUG }}
-          # Provide your Trunk API token as a GitHub secret.
-          token: ${{ secrets.TRUNK_TOKEN }}
+          cli-version: 0.12.11-beta.1
+          public-repo-id: NNSvcFXb
           # Pass the test outcome for quarantining support
           previous-step-outcome: ${{ steps.playwright_tests.outcome }}
 
@@ -119,7 +119,8 @@ jobs:
         with:
           name: javascript-junit-results
           path: |
-            **/*_test.xml
-            **/junitresults-*.xml
-            **/mocha_test.xml
+            tests/jest/jest_junit_test.xml
+            tests/jasmine/reports/season_test.xml
+            tests/playwright/junitresults-playwright.xml
+            javascript/tests/mocha/mocha_test.xml
           retention-days: 7

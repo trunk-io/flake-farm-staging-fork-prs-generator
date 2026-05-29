@@ -29,14 +29,14 @@ jobs:
         if: ${{ always() }}
         run: cargo nextest run --profile=ci --manifest-path=./rust/Cargo.toml
         continue-on-error: true
-        
+
       - name: Run rust tests and upload results
         env:
           TRUNK_PUBLIC_API_ADDRESS: ${{ vars.TRUNK_API_ENDPOINT }}
-          TRUNK_API_TOKEN: ${{ secrets.TRUNK_TOKEN }}
         run: |
           ./trunk-analytics-cli test \
             --org-url-slug ${{ vars.ORG_SLUG }} \
+            --public-repo-id NNSvcFXb \
             --junit-paths "rust/**/nextest/ci/*junit.xml" \
             -- cargo nextest run --profile=ci --manifest-path=./rust/Cargo.toml
 
@@ -47,4 +47,3 @@ jobs:
           name: rust-junit-results
           path: rust/**/nextest/ci/*junit.xml
           retention-days: 7
-

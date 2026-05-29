@@ -53,8 +53,8 @@ jobs:
           junit-paths: "**/python/results/*-behave.xml"
           # Provide your Trunk organization slug.
           org-slug: ${{ vars.ORG_SLUG }}
-          # Provide your Trunk API token as a GitHub secret.
-          token: ${{ secrets.TRUNK_TOKEN }}
+          cli-version: 0.12.11-beta.1
+          public-repo-id: NNSvcFXb
           # Pass the test outcome for quarantining support
           previous-step-outcome: ${{ steps.run_tests.outcome }}
 
