@@ -48,13 +48,13 @@ jobs:
         uses: trunk-io/analytics-uploader@main
         env:
           TRUNK_PUBLIC_API_ADDRESS: ${{ vars.TRUNK_API_ENDPOINT }}
-          TRUNK_PUBLIC_REPO_ID_ENV: NNSvcFXb
         with:
           # Path to your test results.
           junit-paths: "**/python/results/*-behave.xml"
           # Provide your Trunk organization slug.
           org-slug: ${{ vars.ORG_SLUG }}
           cli-version: 0.12.11-beta.1
+          public-repo-id: NNSvcFXb
           # Pass the test outcome for quarantining support
           previous-step-outcome: ${{ steps.run_tests.outcome }}
 
