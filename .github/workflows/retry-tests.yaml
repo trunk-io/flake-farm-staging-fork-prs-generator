@@ -57,7 +57,7 @@ jobs:
           public-repo-id: NNSvcFXb
           # Pass the test outcome for quarantining support
           previous-step-outcome: ${{ steps.run_tests.outcome }}
-          test-collection-short-id: 3anjUgIO
+          test-collection-id: 3anjUgIO
 
       - name: Upload JUnit XML artifacts
         if: ${{ always() }}
