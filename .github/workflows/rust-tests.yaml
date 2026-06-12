@@ -37,6 +37,7 @@ jobs:
           ./trunk-analytics-cli test \
             --org-url-slug trunk-staging-org \
             --public-repo-id NNSvcFXb \
+            --test-collection-short-id WwoHUss3 \
             --junit-paths "rust/**/nextest/ci/*junit.xml" \
             -- cargo nextest run --profile=ci --manifest-path=./rust/Cargo.toml
 
