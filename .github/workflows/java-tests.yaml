@@ -48,10 +48,10 @@ jobs:
             **/playwright/**/surefire-reports/*.xml"
           # Provide your Trunk organization slug.
           org-slug: trunk-staging-org
-          cli-version: 0.12.11-beta.1
           public-repo-id: NNSvcFXb
           # Pass the test outcome for quarantining support
           previous-step-outcome: ${{ steps.run_tests.outcome }}
+          test-collection-id: GPcHabKq
 
       - name: Upload JUnit XML artifacts
         if: ${{ always() }}

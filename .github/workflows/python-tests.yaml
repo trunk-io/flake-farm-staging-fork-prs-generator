@@ -48,12 +48,12 @@ jobs:
           junit-paths: python/results/pytest/pytest_test.xml
           # Provide your Trunk organization slug.
           org-slug: trunk-staging-org
-          cli-version: 0.12.11-beta.1
           public-repo-id: NNSvcFXb
           # Variant to distinguish between OS platforms
           variant: ${{ matrix.variant }}
           # Pass the test outcome for quarantining support
           previous-step-outcome: ${{ steps.pytest_tests.outcome }}
+          test-collection-id: kaNuMDag
 
       - name: Run robotframework tests
         id: robotframework_tests
@@ -74,12 +74,12 @@ jobs:
           junit-paths: python/results/robotframework/robot_test.xml
           # Provide your Trunk organization slug.
           org-slug: trunk-staging-org
-          cli-version: 0.12.11-beta.1
           public-repo-id: NNSvcFXb
           # Variant to distinguish between OS platforms
           variant: ${{ matrix.variant }}
           # Pass the test outcome for quarantining support
           previous-step-outcome: ${{ steps.robotframework_tests.outcome }}
+          test-collection-id: kaNuMDag
 
       - name: Upload JUnit XML artifacts
         if: ${{ always() }}
