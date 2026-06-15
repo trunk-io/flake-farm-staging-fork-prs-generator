@@ -5,8 +5,6 @@
 set -euo pipefail
 
 REPO="trunk-io/analytics-cli"
-VERSION="${TRUNK_CLI_VERSION:-0.12.11-beta.1}"
-
 # Normalize OS/arch to match launcher script platform naming
 OS="$(uname -s | tr '[:upper:]' '[:lower:]')" # linux | darwin
 ARCH="$(uname -m)"
@@ -36,7 +34,7 @@ else
 fi
 
 ASSET="trunk-analytics-cli-${PLATFORM}.tar.gz"
-URL="https://github.com/${REPO}/releases/download/${VERSION}/${ASSET}"
+URL="https://github.com/${REPO}/releases/latest/download/${ASSET}"
 
 echo "Downloading and installing ${ASSET}…"
 curl -fL --retry 3 "${URL}" | tar -xz
