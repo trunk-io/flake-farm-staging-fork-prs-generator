@@ -40,10 +40,10 @@ jobs:
           junit-paths: csharp/**/test-results/csharp-junit.xml
           # Provide your Trunk organization slug.
           org-slug: trunk-staging-org
-          cli-version: 0.12.11-beta.1
           public-repo-id: NNSvcFXb
           # Pass the test outcome for quarantining support
           previous-step-outcome: ${{ steps.run_tests.outcome }}
+          test-collection-id: cIB9Um7C
 
       - name: Upload test results
         if: ${{ always() }} # Always run this step to upload results
